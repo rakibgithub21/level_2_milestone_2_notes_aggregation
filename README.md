@@ -63,7 +63,6 @@ db.users.aggregate([
   { $limit: 5 }
 ])
 ```
-
 ---
 
 ### 5. **$out**
@@ -138,14 +137,12 @@ db.users.aggregate([
 ```
 { $count: "<count_field>" }
 
-
 ```
 **Example**
 ```
 db.users.aggregate([
   { $count: "total_users" }
 ])
-
 ```
 ---
 
@@ -162,16 +159,15 @@ db.users.aggregate([
               avgSalary: { $avg: "$salary" } 
             } }
 ])
-
 ```
+---
+
 ### 11. **$count**
 **উদ্দেশ্য**:   একটি অ্যারে ফিল্ডকে একাধিক ডকুমেন্টে ভেঙে ফেলা।
 
 **Syntax**:
 ```
 { $unwind: "<array_field>" }
-
-
 
 ```
 **Example**
