@@ -56,11 +56,55 @@ db.users.aggregate([
 **Syntax**:
 ```
 { $limit: <number> }
-
 ```
 **Example**
 ```
 db.users.aggregate([
   { $limit: 5 }
+])
+```
+
+---
+
+### 5. **$out**
+**উদ্দেশ্য**:  অ্যাগ্রিগেশন রেজাল্ট অন্য একটি কালেকশনে সংরক্ষণ করা।
+
+**Syntax**:
+```
+{ $out: "<collection_name>" }
+```
+**Example**
+```
+db.users.aggregate([
+  { $match: { age: { $gt: 30 } } },
+  { $out: "older_users" }
+])
+```
+### 6. **$merge**
+**উদ্দেশ্য**:  অ্যাগ্রিগেশন রেজাল্ট বিদ্যমান কালেকশনে সংরক্ষণ করা, একই সাথে ডেটা আপডেট বা ইনসার্ট করা।
+
+**Syntax**:
+```
+{ $merge: { into: "<collection_name>" } }
+```
+**Example**
+```
+db.users.aggregate([
+  { $match: { age: { $gt: 30 } } },
+  { $merge: { into: "updated_users" } }
+])
+```
+### 7. **$group**
+**উদ্দেশ্য**:   একটি নির্দিষ্ট ফিল্ড অনুসারে ডকুমেন্ট গ্রুপ করা এবং অ্যাগ্রিগেশন (যেমন: sum, avg) করা।
+
+**Syntax**:
+```
+{ $group: { _id: "<field_name>", <aggregation_field>: { $aggregation_operator: <field> } } }
+
+```
+**Example**
+```
+db.users.aggregate([
+  { $group: { _id: "$address.country", totalSalary: { $sum: "$salary" } } }
 ])
 ```
