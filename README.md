@@ -18,3 +18,19 @@ db.users.aggregate([
   { $match: { age: { $gt: 30 } } }
 ])
 ```
+---
+
+### ১. **$project**
+**উদ্দেশ্য**: কোন ফিল্ডগুলো ইনক্লুড বা এক্সক্লুড করতে হবে তা নির্ধারণ করা।
+
+**Syntax**:
+```
+{ $project: { <field1>: 1, <field2>: 0, ... } }
+
+```
+**Example**
+```
+db.users.aggregate([
+  { $project: { name: 1, age: 1, _id: 0 } }
+])
+```
