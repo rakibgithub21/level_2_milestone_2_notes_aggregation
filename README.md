@@ -198,7 +198,6 @@ db.orders.aggregate([
 }
 
 
-
 ```
 **Example**
 ```
@@ -231,9 +230,6 @@ db.users.aggregate([
 }
 
 
-
-
-
 ```
 **Example**
 ```
@@ -248,5 +244,34 @@ db.orders.aggregate([
   }
 ])
 
+```
+### 13. **$facet**
+**উদ্দেশ্য**:   একাধিক পাইপলাইন একসাথে চালানোর জন্য ব্যবহৃত হয়।
+
+**Syntax**:
+```
+{ 
+  $facet: {
+    <pipeline_name>: [ <stages> ]
+  }
+}
+
+```
+**Example**
+```
+db.users.aggregate([
+  { 
+    $facet: {
+      "age_groups": [
+        { $match: { age: { $gte: 30 } } },
+        { $count: "adults" }
+      ],
+      "salary_groups": [
+        { $match: { salary: { $gte: 50000 } } },
+        { $count: "high_salary" }
+      ]
+    }
+  }
+])
 
 ```
