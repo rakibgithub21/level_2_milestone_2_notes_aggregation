@@ -20,17 +20,47 @@ db.users.aggregate([
 ```
 ---
 
-### ১. **$project**
+### 2. **$project**
 **উদ্দেশ্য**: কোন ফিল্ডগুলো ইনক্লুড বা এক্সক্লুড করতে হবে তা নির্ধারণ করা।
 
 **Syntax**:
 ```
 { $project: { <field1>: 1, <field2>: 0, ... } }
-
 ```
 **Example**
 ```
 db.users.aggregate([
   { $project: { name: 1, age: 1, _id: 0 } }
+])
+```
+---
+
+### 3. **$sort**
+**উদ্দেশ্য**: এক বা একাধিক ফিল্ডের ওপর ডেটা সাজানো।
+
+**Syntax**:
+```
+{ $sort: { <field1>: 1, <field2>: -1, ... } }
+```
+**Example**
+```
+db.users.aggregate([
+  { $sort: { age: 1 } }
+])
+```
+---
+
+### 4. **$sort**
+**উদ্দেশ্য**:  ডকুমেন্টের সংখ্যা সীমিত করা।
+
+**Syntax**:
+```
+{ $limit: <number> }
+
+```
+**Example**
+```
+db.users.aggregate([
+  { $limit: 5 }
 ])
 ```
